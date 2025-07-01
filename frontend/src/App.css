@@ -1,0 +1,28 @@
+/* Media query for screens smaller than 768px (mobile/tablet) */
+@media (max-width: 768px) {
+  .task-manager-container {
+    width: 90% !important;
+    margin: auto;
+  }
+
+  .task-input-section {
+    flex-direction: column !important;
+    gap: 10px;
+  }
+
+  .task-input-section .input-group {
+    width: 100% !important;
+  }
+
+  .task-item {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px;
+  }
+
+  .task-item button {
+    margin-right: 6px;
+    margin-bottom: 5px;
+  }
+
+}
