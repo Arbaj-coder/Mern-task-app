@@ -10,7 +10,7 @@ function Signup() {
         email: '',
         password: ''
     })
-
+const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -19,42 +19,50 @@ function Signup() {
         setSignupInfo(copySignupInfo);
     }
 
-    const handleSignup = async (e) => {
-        e.preventDefault();
-        const { name, email, password } = signupInfo;
-        if (!name || !email || !password) {
-            return handleError('name, email and password are required')
-        }
-        try {
-            const url = `https://mern-task-app-api.vercel.app/auth/signup`;
-            const response = await fetch(url, {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(signupInfo)
-            });
-            const result = await response.json();
-            const { success, message, error } = result;
-            if (success) {
-                handleSuccess(message);
-                setTimeout(() => {
-                    navigate('/login')
-                }, 1000)
-            } else if (error) {
-                const details = error?.details[0].message;
-                handleError(details);
-            } else if (!success) {
-                handleError(message);
-            }
-        } catch (err) {
-            handleError(err);
-        }
+const handleSignup = async (e) => {
+    e.preventDefault();
+    const { name, email, password } = signupInfo;
+    if (!name || !email || !password) {
+        return handleError('name, email and password are required');
     }
+    try {
+        setLoading(true); // start spinner
+        await new Promise(resolve => setTimeout(resolve, 5000)); // optional: artificial delay
+
+        const url = `http://localhost:8080/auth/signup`;
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(signupInfo)
+        });
+        const result = await response.json();
+        const { success, message, error } = result;
+
+        if (success) {
+            handleSuccess(message);
+            setTimeout(() => {
+                navigate('/login');
+            }, 1000);
+        } else if (error) {
+            const details = error?.details[0].message;
+            handleError(details);
+        } else {
+            handleError(message);
+        }
+    } catch (err) {
+        handleError("Signup failed. Try again.");
+    } finally {
+        setLoading(false); // stop spinner
+    }
+};
+
     return (
         <div className='center1'>
         <div className='container1'>
             <h1>Signup</h1>
+            {loading && <div className="spinner"></div>}
             <form onSubmit={handleSignup}>
                 <div>
                     <label htmlFor='name'>Name</label>
