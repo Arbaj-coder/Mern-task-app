@@ -22,4 +22,4 @@ export const notify = (message, type = 'default') => {
     draggable: true
   });
 };
-export const API_URL = 'https://mern-task-app-api.vercel.app';
+export const API_URL = 'https://mern-task-app-black.vercel.app/';
