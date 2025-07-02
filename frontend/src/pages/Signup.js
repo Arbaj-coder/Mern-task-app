@@ -29,7 +29,7 @@ const handleSignup = async (e) => {
         setLoading(true); // start spinner
         await new Promise(resolve => setTimeout(resolve, 5000)); // optional: artificial delay
 
-        const url = `http://localhost:8080/auth/signup`;
+        const url = `https://mern-task-app-api.vercel.app/auth/signup`;
         const response = await fetch(url, {
             method: "POST",
             headers: {
