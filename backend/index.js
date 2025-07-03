@@ -9,7 +9,7 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 
 // ✅ Connect MongoDB here directly
-mongoose.connect(process.env.MONGO_URI, {
+mongoose.connect(process.env.MONGO_CONN, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
