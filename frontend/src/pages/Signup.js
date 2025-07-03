@@ -27,7 +27,6 @@ const handleSignup = async (e) => {
     }
     try {
         setLoading(true); // start spinner
-        await new Promise(resolve => setTimeout(resolve, 5000)); // optional: artificial delay
 
         const url = `https://mern-task-app-black.vercel.app/auth/signup`;
         const response = await fetch(url, {
