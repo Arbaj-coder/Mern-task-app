@@ -3,7 +3,6 @@ import { API_URL } from "./utils"
 
 export const CreateTask = async (taskObj) => {
     const url = `${API_URL}/tasks`;
-    console.log('url ', url)
     const token = localStorage.getItem('token');
     const options = {
         method: 'POST',
