@@ -30,7 +30,7 @@ function Login() {
 
     try {
         setLoading(true); // START LOADING
-        await new Promise((resolve) => setTimeout(resolve, 5000)); // optional delay
+        
 
         const url = `https://mern-task-app-black.vercel.app/auth/login`;
         const response = await fetch(url, {
