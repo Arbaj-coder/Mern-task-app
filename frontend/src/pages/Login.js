@@ -9,7 +9,6 @@ function Login() {
         email: '',
         password: ''
     })
-    const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
 
@@ -29,10 +28,9 @@ function Login() {
     }
 
     try {
-        setLoading(true); // START LOADING
         
 
-        const url = `https://mern-task-app-black.vercel.app/auth/login`;
+        const url = `https://mern-task-app-api-buha.onrender.com/auth/login`;
         const response = await fetch(url, {
             method: "POST",
             headers: {
@@ -59,9 +57,7 @@ function Login() {
         }
     } catch (err) {
         handleError("Login failed. Try again.");
-    } finally {
-        setLoading(false); // STOP LOADING
-    }
+    } 
 };
 
     
@@ -70,7 +66,6 @@ function Login() {
             
         <div className='container1'>
             <h1>Login</h1>
-            {loading && <div className="spinner"></div>}
             <form onSubmit={handleLogin}>
                 <div>
                     <label htmlFor='email'>Email</label>
