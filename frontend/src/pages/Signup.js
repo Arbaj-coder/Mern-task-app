@@ -10,7 +10,6 @@ function Signup() {
         email: '',
         password: ''
     })
-const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -26,9 +25,7 @@ const handleSignup = async (e) => {
         return handleError('name, email and password are required');
     }
     try {
-        setLoading(true); // start spinner
-
-        const url = `https://mern-task-app-black.vercel.app/auth/signup`;
+        const url = `https://mern-task-app-api-buha.onrender.com/auth/signup`;
         const response = await fetch(url, {
             method: "POST",
             headers: {
@@ -52,8 +49,6 @@ const handleSignup = async (e) => {
         }
     } catch (err) {
         handleError("Signup failed. Try again.");
-    } finally {
-        setLoading(false); // stop spinner
     }
 };
 
@@ -61,7 +56,6 @@ const handleSignup = async (e) => {
         <div className='center1'>
         <div className='container1'>
             <h1>Signup</h1>
-            {loading && <div className="spinner"></div>}
             <form onSubmit={handleSignup}>
                 <div>
                     <label htmlFor='name'>Name</label>
