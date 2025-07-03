@@ -33,7 +33,6 @@ const signup = async (req, res) => {
 const login = async (req, res) => {
     try {
         const { email, password } = req.body;
-         await new Promise(resolve => setTimeout(resolve, 60000));
         const user = await UserModel.findOne({ email });
         const errorMsg = 'Auth failed email or password is wrong';
         if (!user) {
