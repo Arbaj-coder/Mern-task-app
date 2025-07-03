@@ -6,7 +6,6 @@ const UserModel = require("../Modals/user");
 const signup = async (req, res) => {
     try {
         const { name, email, password } = req.body;
-         await new Promise(resolve => setTimeout(resolve, 60000));
         const user = await UserModel.findOne({ email });
         if (user) {
             return res.status(409)
